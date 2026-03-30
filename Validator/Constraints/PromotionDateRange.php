@@ -18,7 +18,13 @@ use Symfony\Component\Validator\Constraint;
 #[\Attribute]
 final class PromotionDateRange extends Constraint
 {
-    public string $message = 'sylius.promotion.end_date_cannot_be_set_prior_start_date';
+    public function __construct(
+        public string $message = 'sylius.promotion.end_date_cannot_be_set_prior_start_date',
+        ?array $groups = null,
+        mixed $payload = null,
+    ) {
+        parent::__construct(null, $groups, $payload);
+    }
 
     public function getTargets(): string
     {
